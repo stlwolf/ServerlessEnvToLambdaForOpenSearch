@@ -1,0 +1,15 @@
+{
+  "name": "serverlessenvtolambdaforopensearch",
+  "version": "1.0.0",
+  "description": "Repository for demonstrating how to pass OpenSearch endpoint as an environment variable to AWS Lambda using Serverless Framework. Contains sample code and guidelines for developers looking to implement similar solutions in their serverless architectures.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless": "^3.38.0"
+  }
+}
