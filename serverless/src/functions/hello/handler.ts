@@ -4,9 +4,11 @@ import { middyfy } from '@libs/lambda';
 
 import schema from './schema';
 
+const esDomainUrl = process.env.ES_DOMAIN_ENDPOINT || "";
+
 const hello: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
   return formatJSONResponse({
-    message: `Hello ${event.body.name}, welcome to the exciting Serverless world!`,
+    message: `esDomainUrl: ${esDomainUrl}`,
     event,
   });
 };

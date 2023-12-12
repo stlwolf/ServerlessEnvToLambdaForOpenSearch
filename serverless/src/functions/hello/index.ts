@@ -16,4 +16,9 @@ export default {
       },
     },
   ],
+  environment: {
+    ES_DOMAIN_ENDPOINT: {
+      "Fn::GetAtt": ["OpenSearchInstance", "DomainEndpoint"],
+    },
+  },
 };

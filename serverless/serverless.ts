@@ -33,6 +33,58 @@ const serverlessConfiguration: AWS = {
       concurrency: 10,
     },
   },
+  resources: {
+    Resources: {
+      OpenSearchInstance: {
+        Type: "AWS::OpenSearchService::Domain",
+        Properties: {
+          EngineVersion: "OpenSearch_2.7",
+          DomainName: "sample-open-search",
+          ClusterConfig: {
+            InstanceType: "t3.small.search",
+            InstanceCount: 1,
+            DedicatedMasterEnabled: false,
+            ZoneAwarenessEnabled: false,
+          },
+          EBSOptions: {
+            EBSEnabled: true,
+            VolumeType: "gp3",
+            VolumeSize: "20",
+          },
+          EncryptionAtRestOptions: {
+            Enabled: true,
+          },
+          NodeToNodeEncryptionOptions: {
+            Enabled: true,
+          },
+          DomainEndpointOptions: {
+            EnforceHTTPS: true,
+          },
+          AdvancedSecurityOptions: {
+            Enabled: true,
+            InternalUserDatabaseEnabled: true,
+            MasterUserOptions: {
+              MasterUserName: "user",
+              MasterUserPassword: "hogehuga12!@HUHU",
+            },
+          },
+          AccessPolicies: {
+            Version: "2012-10-17",
+            Statement: [
+              {
+                Effect: "Allow",
+                Principal: {
+                  AWS: "*",
+                },
+                Action: "es:*",
+                Resource: "arn:aws:es:ap-northeast-1:${aws:accountId}:domain/sample-open-search/*",
+              },
+            ],
+          },
+        },
+      },
+    }
+  }
 };
 
 module.exports = serverlessConfiguration;
